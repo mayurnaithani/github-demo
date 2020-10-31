@@ -6,9 +6,12 @@ pipeline{
         stages{
 
               stage('Check home path'){
-                  steps{
-                                  println "Test successful"
-                        }
+                  when {
+                  expression { return params.current_status == "opened" && params.merged == false && params.branch == "master" }
+              }
+              steps {
+                 println "PR is raised"
+              }
               }
               
         }
