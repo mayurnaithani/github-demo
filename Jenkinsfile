@@ -8,7 +8,7 @@ pipeline{
                 stage('Check home path'){
                       
                   when {
-                  expression { return params.current_status == "opened" && params.merged == false && params.branch == "master" }
+                  expression { return params.current_status == "opened" && params.merged == false }
               }
               steps {
                  println "PR is raised"
