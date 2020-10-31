@@ -6,9 +6,9 @@ pipeline{
         stages{
                 stage('Print variables') {
                         steps {
-                              println "params.current_status"
-                              println "params.merged"
-                              println "params.branch"
+                                println "${params.current_status}"
+                                println "${params.merged}"
+                                println "{params.branch}"
                             }
                 }             
               
