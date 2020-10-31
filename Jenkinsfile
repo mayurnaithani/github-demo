@@ -4,14 +4,7 @@ pipeline{
            didSucceed = false
         }
         stages{
-                stage('Print variables') {
-                        steps {
-                                println "${current_status}"
-                                println "${merged}"
-                                println "${branch}"
-                            }
-                }             
-              
+                
                 stage('Check home path'){
                       
                   when {
