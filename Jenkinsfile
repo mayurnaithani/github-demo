@@ -18,6 +18,7 @@ pipeline{
                                         allOf {
                                             environment name: 'status', value: 'opened'
                                             environment name: 'ismerged', value: false
+                                        }
                                      }
                        steps {
                                
