@@ -3,7 +3,7 @@ pipeline{
         environment {
                 status = "${params.current_status}"
                 ismerged = "${params.merged}"
-                basebranch = "${branch}"
+                basebranch = "${params.branch}"
         }
         stages{
                 stage('Check variables') {
