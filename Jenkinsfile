@@ -11,6 +11,7 @@ pipeline{
                                 println "$status"
                                 println "$ismerged" 
                                 println "$branch"
+                                println '$islocked"
                         }
                 }
                 
