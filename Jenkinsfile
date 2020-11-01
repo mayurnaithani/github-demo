@@ -6,7 +6,11 @@ pipeline{
                 basebranch = "${branch}"
         }
         stages{
-                
+                stage('Check variables') {
+                        steps {
+                                println "$status $ismerged $basebranch"
+                        }
+                }
                 
                 stage('Check for open PR') {
                                 when {
