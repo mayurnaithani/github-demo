@@ -15,7 +15,7 @@ pipeline{
                 }
                 stage('Check for open PR') {
                         when {
-                                expression { return ${status} == "closed" && ${ismerged} == true }
+                                expression { return "${status}" == "closed" && "${ismerged}" == true }
                              }
                        steps {
                           echo "PR is opened"
