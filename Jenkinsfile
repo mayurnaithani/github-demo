@@ -3,14 +3,14 @@ pipeline{
         environment {
                 status = "${params.current_status}"
                 ismerged = "${params.merged}"
-                //basebranch = "${params.branch}"
+                branch = "${params.branch}"
         }
         stages{
                 stage('Check variables') {
                         steps {
                                 println "$status"
                                 println "$ismerged" 
-                                //println "$basebranch"
+                                println "$branch"
                         }
                 }
                 
