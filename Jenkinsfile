@@ -8,7 +8,9 @@ pipeline{
         stages{
                 stage('Check variables') {
                         steps {
-                                println "$status $ismerged $basebranch"
+                                println "$status"
+                                println "$ismerged" 
+                                println "$basebranch"
                         }
                 }
                 
