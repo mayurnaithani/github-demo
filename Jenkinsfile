@@ -18,7 +18,9 @@ pipeline{
                                 expression { return "${status}" == "opened" && "${ismerged}" == false }
                              }
                        steps {
-                          echo "PR is opened"
+                               println "${status}"
+                               println "${status}"
+                               println "PR has been raised"
                              }
                   } 
                         
