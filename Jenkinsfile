@@ -12,7 +12,7 @@ pipeline{
                                 println "$status";
                                 println "$ismerged" ;
                                 println "$branch";
-                                println '$lockstatus";
+                                println "$lockstatus";
                         }
                 }
                 
