@@ -10,6 +10,7 @@ pipeline{
                         steps {
                                 println "${status}"
                                 println "${ismerged}"
+                                println "Inside stage1"
                         }
                 }
                 
