@@ -13,7 +13,14 @@ pipeline{
                                 println "Inside stage1"
                         }
                 }
-                
+                stage('Check for open PR') {
+                        when {
+                                expression { return ${status} == "closed" && ${ismerged} == true }
+                             }
+                       steps {
+                          echo "PR is opened"
+                             }
+                  } 
                         
-             }
+         }
 }
