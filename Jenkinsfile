@@ -1,19 +1,21 @@
 pipeline{
         agent any
         environment {
-           didSucceed = false
+           status = params.current_status
+           ismerged = params.merged
         }
         stages{
                 
                 stage('Print value') {
                         steps {
-                                println "${params.current_status}"
+                                println "${status}"
+                                println "${ismerged}"
                         }
                 }
                 stage('Check home path'){
                       
                   when {
-                  expression { return params.current_status == "opened" }
+                  expression { return status == "opened" && ismerged == false }
               }
               steps {
                  println "PR is raised"
