@@ -13,14 +13,15 @@ pipeline{
                         }
                 }
                 stage('Check home path'){
-                      
-                  when {
-                  expression { return status == "opened" && ismerged == false }
-              }
-              steps {
-                 println "PR is raised"
-              }
-              }
+                        script {
+                                if( "$status" == "opened" && "$ismerged" == false) {
+                  
+                                    steps {
+                                         println "PR is raised"
+                                          }
+                                         }
+                                }
+                }
               
-        }
+             }
 }
