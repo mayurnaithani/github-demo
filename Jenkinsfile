@@ -1,8 +1,8 @@
 pipeline{
         agent any
         environment {
-           status = params.current_status
-           ismerged = params.merged
+                status = "${params.current_status}"
+                ismerged = "${params.merged}"
         }
         stages{
                 
