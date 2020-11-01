@@ -1,4 +1,4 @@
-def islocked = params.locked
+def islocked = "$locked"
 pipeline{
         agent any
         environment {
