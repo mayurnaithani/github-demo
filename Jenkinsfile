@@ -14,11 +14,11 @@ pipeline{
                         }
                 }
                 stage('Check for open PR') {
-                       
+                        script {
                                 println "${status}"
                                println "${status}"
                         
-                        
+                        }
                         when {
                                 expression { return "${status}" == "opened" && "${ismerged}" == false }
                              }
