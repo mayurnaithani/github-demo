@@ -15,8 +15,10 @@ pipeline{
                 }
                 stage('Check for open PR') {
                                 when {
-                                environment name: 'status', value: 'opened'
-                             }
+                                        allOf {
+                                            environment name: 'status', value: 'opened'
+                                            environment name: 'ismerged', value: false
+                                     }
                        steps {
                                
                                println "PR has been raised"
