@@ -17,7 +17,7 @@ pipeline{
                                 when {
                                         allOf {
                                             environment name: 'status', value: 'opened'
-                                            environment name: 'ismerged', value: false
+                                            environment name: 'ismerged', value: 'false'
                                         }
                                      }
                        steps {
