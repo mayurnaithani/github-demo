@@ -4,15 +4,15 @@ pipeline{
                 status = "${params.current_status}"
                 ismerged = "${params.merged}"
                 branch = "${params.branch}"
-                lockstatus = "${params.islocked}"
+                
         }
         stages{
                 stage('Check variables') {
                         steps {
-                                println "$status";
-                                println "$ismerged" ;
-                                println "$branch";
-                                println "$lockstatus";
+                                println "$status"
+                                println "$ismerged" 
+                                println "$branch"
+                               
                         }
                 }
                 
