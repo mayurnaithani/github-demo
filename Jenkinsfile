@@ -1,3 +1,4 @@
+def islocked = params.locked
 pipeline{
         agent any
         environment {
@@ -12,6 +13,7 @@ pipeline{
                                 println "$status"
                                 println "$ismerged" 
                                 println "$branch"
+                                println "$islocked"
                                
                         }
                 }
