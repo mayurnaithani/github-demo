@@ -9,10 +9,10 @@ pipeline{
         stages{
                 stage('Check variables') {
                         steps {
-                                println "$status"
-                                println "$ismerged" 
-                                println "$branch"
-                                println '$lockstatus"
+                                println "$status";
+                                println "$ismerged" ;
+                                println "$branch";
+                                println '$lockstatus";
                         }
                 }
                 
