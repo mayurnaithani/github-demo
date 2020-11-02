@@ -1,12 +1,15 @@
 def islocked = "$locked"
+def status = "$current_status"
+def ismerged = "$merged"
+def branch = "$branch"
 pipeline{
         agent any
-        environment {
-                status = "${params.current_status}"
-                ismerged = "${params.merged}"
-                branch = "${params.branch}"
+        //environment {
+          //      status = "${params.current_status}"
+            //    ismerged = "${params.merged}"
+              //  branch = "${params.branch}"
                 
-        }
+        //}
         stages{
                 stage('Check variables') {
                         steps {
