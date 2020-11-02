@@ -1,3 +1,5 @@
+//import jenkins.model.*
+//jenkins = Jenkins.instance
 def islocked = "$locked"
 def status = "$current_status"
 def ismerged = "$merged"
@@ -31,7 +33,7 @@ pipeline{
                                              //  }
                                     // }
                         script {
-                                       if($status == 'opened' && $ismerged == false && $branch == 'master') {
+                                       if("$status" == 'opened' && "$ismerged" == false && "$branch" == 'master') {
                                        //steps {
                                
                                          println "PR has been raised on ${branch}, Current status of PR is ${status} with merged as ${ismerged}"
