@@ -36,7 +36,7 @@ pipeline{
                                        println "$status"
                                 println "$ismerged" 
                                  println "$branch"
-                                        if("$status" == 'opened' && "$ismerged" == false && "$branch" == 'master') {
+                                        if("$status" == 'opened' && "$ismerged" == 'false' && "$branch" == 'master') {
                                        //steps {
                                
                                          println "PR has been raised on ${branch}, Current status of PR is ${status} with merged as ${ismerged}"
