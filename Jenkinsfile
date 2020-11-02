@@ -22,6 +22,7 @@ pipeline{
                 }
                 
                 stage('Check for open PR') {
+                        steps {
                                 //when {
                                         //allOf {
                                            // environment name: 'status', value: 'opened'
@@ -31,7 +32,7 @@ pipeline{
                                     // }
                         script {
                                        if($status == 'opened' && $ismerged == false && $branch == 'master') {
-                                       steps {
+                                       //steps {
                                
                                          println "PR has been raised on ${branch}, Current status of PR is ${status} with merged as ${ismerged}"
                                              }
