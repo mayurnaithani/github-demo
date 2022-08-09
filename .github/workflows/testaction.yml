@@ -8,7 +8,7 @@ jobs:
      runs-on: ubuntu-latest
      steps:
        - name: Finding branch
-         run: echo "${{ github.ref }}"
+         run: echo "$GITHUB_CONTEXT"
        - name: Identify env
          if: ${{ github.ref == 'ref/heads/master' }}
          run: echo "Current environment is test"
