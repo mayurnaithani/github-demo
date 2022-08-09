@@ -1,0 +1,12 @@
+name: Github actions test
+on:
+  push:
+    branches:
+      - master
+jobs:
+  Identify-subscriber:
+     runs-on: ubuntu-latest
+     steps:
+       - name: Identify env
+         if: ${{ github.ref == 'ref/heads/master' }}
+         run: echo "Current environment is test"
