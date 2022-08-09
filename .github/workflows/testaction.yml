@@ -8,5 +8,5 @@ jobs:
      runs-on: ubuntu-latest
      steps:
        - name: Identify env
-         if: ${{ github.ref == 'refs/heads/master' }}
+         if: github.ref == 'refs/heads/master'
          run: echo "Current environment is test"
