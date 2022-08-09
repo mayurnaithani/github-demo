@@ -7,8 +7,14 @@ jobs:
   Identify-subscriber:
      runs-on: ubuntu-latest
      steps:
-       - name: Getting Github event
-         run: echo '${{ toJSON(github) }}'
+       - name: Check changed file
+         id: files
+         uses: jitterbit/get-changed-files@v1
+       - name: Check for changed files
+         run: |
+           for changed_file in ${{ steps.files.outputs.all }}; do
+              echo "Do something with this ${changed_file}."
+           done
        - name: Identify env
          if: github.ref == 'refs/heads/master'
          run: echo "Current environment is test"
