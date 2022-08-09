@@ -7,8 +7,6 @@ jobs:
   Identify-subscriber:
      runs-on: ubuntu-latest
      steps:
-       - name: Finding branch
-         run: echo "$GITHUB_CONTEXT"
        - name: Identify env
-         if: ${{ github.ref == 'ref/heads/master' }}
+         if: ${{ github.ref == 'refs/heads/master' }}
          run: echo "Current environment is test"
