@@ -11,10 +11,8 @@ jobs:
          id: files
          uses: jitterbit/get-changed-files@v1
        - name: Check for changed files
-         run: |
-           if [ contains( steps.files.outputs.all, 'CloudFormation' ) ]; then
-              echo "Its an IaC change"
-           fi
+         if: contains( steps.files.outputs.all, 'CloudFormation' )
+         run: echo "Its an IaC change"
        - name: Identify env
          if: github.ref == 'refs/heads/master'
          run: echo "Current environment is test"
