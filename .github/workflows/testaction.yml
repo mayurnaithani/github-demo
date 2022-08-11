@@ -16,10 +16,6 @@ jobs:
        - name: Identify env
          if: github.ref == 'refs/heads/master'
          run: echo "Current environment is test"
-       - name: Testing secrets
-         env:
-           jenkins: ${{ secrets.JENKINS_URL }}
-         run: echo $jenkins
        - name: Trigger Jenkins job
          uses: jabbukka/jenkins-trigger@main
          with:
