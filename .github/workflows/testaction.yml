@@ -16,3 +16,12 @@ jobs:
        - name: Identify env
          if: github.ref == 'refs/heads/master'
          run: echo "Current environment is test"
+       - name: Trigger Jenkins job
+         uses: jabbukka/jenkins-trigger@main
+         with:
+          url: ${{ secrets.JENKINS_URL }}
+          job_name: "githubactions-test"
+          user_name: ${{ secrets.JENKINS_USER }}
+          api_token: ${{ secrets.JENKINS_TOKEN }}
+          wait: "true"
+          timeout: "1000"
