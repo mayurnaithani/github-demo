@@ -39,4 +39,4 @@ jobs:
           api_token: ${{ secrets.JENKINS_TOKEN }}
           wait: "true"
           timeout: "1000"
-          parameter: {"region:us-east-1,stack-name:EC2test}
+          parameter: {"region:us-east-1","stack-name":"EC2test"}
