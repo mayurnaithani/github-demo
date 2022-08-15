@@ -30,8 +30,12 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           role-duration-seconds: 3600
-       - name: Deploy to AWS CloudFormation
-         uses: aws-actions/aws-cloudformation-github-deploy@v1
+       - name: Trigger Deployment job
+         uses: jabbukka/jenkins-trigger@main
          with:
-          name: TestEC2Stack
-          template: CloudFormation/ec2.yml
+          url: ${{ secrets.JENKINS_URL }}
+          job_name: "githubactions-test"
+          user_name: ${{ secrets.JENKINS_USER }}
+          api_token: ${{ secrets.JENKINS_TOKEN }}
+          wait: "true"
+          timeout: "1000"
