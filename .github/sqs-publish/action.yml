@@ -1,0 +1,22 @@
+name: "Publish message to SQS"
+description: "To be used by GitHub actions to publish message to SQS"
+inputs:
+  sqs-arn:
+    description: "ARN of the SQS queue"
+    required: true
+    type: string
+  publish-message:
+    description: "Content of the message"
+    required: true
+    type: string
+  message-attributes:
+    description: "SQS Message Attributes"
+    required: false
+    type: map
+  message-group-id:
+    description: "SQS Message Group ID"
+    required: false
+    type: string
+runs:
+  using: "node16"
+  main: "index.js"
