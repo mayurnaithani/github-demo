@@ -33,8 +33,8 @@ jobs:
        - name: Queue message for change delegator in SQS
          uses: ./.github/actions/sqs-publish
          with:
-           sqs-arn: https://sqs.us-east-1.amazonaws.com/566403634518/Orchestrator.fifo
-           publish-message: '{Change-type: IaC,region:us-east-1,Changes: {{ steps.files.outputs.all}}}'
+           sqs-arn: ${{ secrets.SQS_ARN }}
+           publish-message: "{Change-type: IaC,region:us-east-1,Changes: ${{ steps.files.outputs.all}}}"
            message-group-id: "us-east-1"
        - name: Trigger Deployment job
          uses: jabbukka/jenkins-trigger@main
