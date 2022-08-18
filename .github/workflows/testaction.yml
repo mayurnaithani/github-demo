@@ -30,11 +30,11 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           role-duration-seconds: 3600
-       - name: Queue message for change delegator
+       - name: Queue message for change delegator in SQS
          uses: ./.github/actions/sqs-publish
          with:
            sqs-arn: https://sqs.us-east-1.amazonaws.com/566403634518/Orchestrator.fifo
-           publish-message: "IaC change"
+           publish-message: '{"Change-type": "IaC","region":"us-east-1","Changes": steps.files.outputs.all}'
            message-group-id: "us-east-1"
        - name: Trigger Deployment job
          uses: jabbukka/jenkins-trigger@main
