@@ -34,7 +34,7 @@ jobs:
          uses: ./.github/actions/sqs-publish
          with:
            sqs-arn: ${{ secrets.SQS_ARN }}
-           publish-message: "{Change-type: IaC,region:us-east-1,Changes: ${{ steps.files.outputs.all}}}"
+           publish-message: "{Change-type: IaC,region:us-east-1,Changes: ${{ steps.files.outputs.all }}}"
            message-group-id: "us-east-1"
        - name: Trigger Deployment job
          uses: jabbukka/jenkins-trigger@main
