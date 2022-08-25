@@ -95,8 +95,9 @@ async function main() {
     // POST API call
     await requestJenkinsJob(jobName, params, headers);
 
+    // Waiting for job completion
     await waitJenkinsJob(jobName, startTs, headers);
-    
+   
   } catch (err) {
     core.setFailed(err.message);
     core.error(err.message);
