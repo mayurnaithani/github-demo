@@ -21,7 +21,7 @@ async function requestJenkinsJob(jobName, params, headers) {
     headers: headers
   }
   await new Promise((resolve, reject) => request(req)
-    .on('response', (res) => {	
+    .on('response', (res) => {
       core.info(`Job triggered`);
       resolve();
     })
@@ -52,16 +52,17 @@ async function getJobStatus(jobName, headers) {
     );
 }
 async function waitJenkinsJob(jobName, timestamp, headers) {
-  core.info(`Waiting for "${jobName}" to be started`);
   while (true) {
     let data = await getJobStatus(jobName, headers);
     if (data.timestamp < timestamp) {
       core.info(`Job yet to start`)
     } else if (data.result == "SUCCESS") {
-      core.info(`Job "${data.fullDisplayName}" finished`);
+      core.info(`Job "${data.fullDisplayName}" has completed`);
       break;
     } else if (data.result == "FAILURE" || data.result == "ABORTED") {
       throw new Error(`Job ${data.fullDisplayName} failed`);
+    } else {
+      core.info(`Job is running`);
     }
     await sleep(5);
   }
@@ -69,15 +70,14 @@ async function waitJenkinsJob(jobName, timestamp, headers) {
 
 async function main() {
   try {
-    // User input params
     let params = {};
     let startTs = + new Date();
     let jobName = core.getInput('job_name');
     if (core.getInput('parameters')) {
       params = JSON.parse(core.getInput('parameters'));
-      core.info(`Parameters passed : ${params.toString()}`);
+      core.info(`>>> Parameter ${params.toString()}`);
     }
-    // create auth token for Jenkins API
+    
     const API_TOKEN = Buffer.from(`${core.getInput('user_name')}:${core.getInput('api_token')}`).toString('base64');
     let headers = {
       'Authorization': `Basic ${API_TOKEN}`
@@ -90,9 +90,11 @@ async function main() {
       }
     }
     
+    
     await requestJenkinsJob(jobName, params, headers);
 
     await waitJenkinsJob(jobName, startTs, headers);
+    
   } catch (err) {
     core.setFailed(err.message);
     core.error(err.message);
