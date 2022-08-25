@@ -43,4 +43,4 @@ jobs:
           job_name: "githubactions-test"
           user_name: ${{ secrets.JENKINS_USER }}
           api_token: ${{ secrets.JENKINS_TOKEN }}
-          parameter: '{"region":"us-east-1","stack_name":"EC2test"}'
+          parameters: '{"region":"us-east-1","stack_name":"EC2test"}'
