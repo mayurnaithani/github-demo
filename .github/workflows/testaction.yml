@@ -37,12 +37,10 @@ jobs:
            publish-message: "{Change-type: IaC,region:us-east-1,Changes: ${{ steps.files.outputs.all }}}"
            message-group-id: "us-east-1"
        - name: Trigger Deployment job
-         uses: jabbukka/jenkins-trigger@main
+         uses: ./.github/actions/jenkins-trigger
          with:
-          url: ${{ secrets.JENKINS_URL }}
+          jenkins_url: ${{ secrets.JENKINS_URL }}
           job_name: "githubactions-test"
           user_name: ${{ secrets.JENKINS_USER }}
           api_token: ${{ secrets.JENKINS_TOKEN }}
-          wait: "true"
-          timeout: "1000"
           parameter: '{"region":"us-east-1","stack_name":"EC2test"}'
