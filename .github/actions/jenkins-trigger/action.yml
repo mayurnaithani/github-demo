@@ -1,0 +1,25 @@
+name: 'Jenkins Job Trigger'
+description: 'Trigger a Jenkins job via GitHub actions'
+inputs:
+  jenkins_url:
+    description: 'Your Jenkins endpoint'
+    required: true
+  user_name: 
+    description: 'User name'
+    required: true
+  api_token:
+    description: 'Jenkins API token'
+    required: true
+  job_name:
+    description: 'Job to be triggered'
+    required: true
+  parameters:
+    description: 'Parameters to be passed to job'
+    required: false
+  headers:
+    description: 'Additional headers to include in the HTTP requests in JSON format.'
+    required: false
+  
+runs:
+  using: 'node16'
+  main: 'index.js'
