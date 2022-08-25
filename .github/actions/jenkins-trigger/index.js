@@ -60,7 +60,7 @@ async function main() {
     let startTs = + new Date();
     let jobName = core.getInput('job_name');
     if (core.getInput('parameters')) {
-      params = JSON.parse(core.getInput('parameters));
+      params = JSON.parse(core.getInput('parameters'));
       core.info(`Parameters passed : ${params.toString()}`);
     }
     // create auth token for Jenkins API
