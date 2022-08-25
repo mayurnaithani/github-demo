@@ -1,5 +1,10 @@
 const request = require('request');
 const core = require('@actions/core');
+let timer = setTimeout(() => {
+  core.setFailed("Job Timeout");
+  core.error("Exception Error: Timed out");
+  }, (Number(core.getInput('timeout')) * 1000));
+
 
 async function requestJenkinsJob(jobName, params, headers) {
   const jenkinsEndpoint = core.getInput('jenkins_url');
@@ -17,6 +22,7 @@ async function requestJenkinsJob(jobName, params, headers) {
     .on("error", (err) => {
       core.setFailed(err);
       core.error(JSON.stringify(err));
+      clearTimeout(timer);
       reject();
     })
   );
@@ -32,6 +38,7 @@ async function getJobStatus(jobName, headers) {
   return new Promise((resolve, reject) =>
       request(req, (err, res, body) => {
         if (err) {
+          clearTimeout(timer);
           reject(err);
         }
         resolve(JSON.parse(body));
@@ -49,7 +56,8 @@ async function waitJenkinsJob(jobName, timestamp, headers) {
       break;
     } else if (data.result == "FAILURE" || data.result == "ABORTED") {
       throw new Error(`Job ${data.fullDisplayName} failed`);
-    } 
+    }
+    await sleep(5);
   }
 }
 
@@ -82,7 +90,9 @@ async function main() {
   } catch (err) {
     core.setFailed(err.message);
     core.error(err.message);
-  } 
+  } finally {
+    clearTimeout(timer);
+  }
 }
 
 process.env.NODE_TLS_REJECT_UNAUTHORIZED="0";
