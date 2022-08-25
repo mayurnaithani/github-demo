@@ -90,8 +90,7 @@ async function main() {
         ...user_headers
       }
     }
-    
-    
+        
     await requestJenkinsJob(jobName, params, headers);
 
     await waitJenkinsJob(jobName, startTs, headers);
