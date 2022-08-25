@@ -1,10 +1,16 @@
 const request = require('request');
 const core = require('@actions/core');
+
 let timer = setTimeout(() => {
   core.setFailed("Job Timeout");
   core.error("Exception Error: Timed out");
   }, (Number(core.getInput('timeout')) * 1000));
 
+const sleep = (seconds) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(resolve, (seconds * 1000));
+  });
+};
 
 async function requestJenkinsJob(jobName, params, headers) {
   const jenkinsEndpoint = core.getInput('jenkins_url');
