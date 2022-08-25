@@ -43,4 +43,5 @@ jobs:
           job_name: "githubactions-test"
           user_name: ${{ secrets.JENKINS_USER }}
           api_token: ${{ secrets.JENKINS_TOKEN }}
+          timeout: "1000"
           parameters: '{"region":"us-east-1","stack_name":"EC2test"}'
