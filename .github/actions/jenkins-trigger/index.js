@@ -1,6 +1,8 @@
 const request = require('request');
 const core = require('@actions/core');
 
+let wait = 'true';
+
 let timer = setTimeout(() => {
   core.setFailed("Job Timeout");
   core.error("Exception Error: Timed out");
@@ -96,8 +98,9 @@ async function main() {
     await requestJenkinsJob(jobName, params, headers);
 
     // Waiting for job completion
-    await waitJenkinsJob(jobName, startTs, headers);
-   
+    if (wait == 'true') {
+      await waitJenkinsJob(jobName, startTs, headers);
+    }
   } catch (err) {
     core.setFailed(err.message);
     core.error(err.message);
