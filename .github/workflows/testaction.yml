@@ -4,11 +4,6 @@ on:
     branches:
       - master
 jobs:
-  Checkout-code:
-     runs-on: ubuntu-latest
-     steps:
-       - name: Checkout code from repo
-         uses: actions/checkout@v3
   Identify-the-change:
      runs-on: ubuntu-latest
      outputs:
@@ -31,6 +26,8 @@ jobs:
        - name: Identify env
          if: github.ref == 'refs/heads/master'
          run: echo "Current environment is test"
+       - name: Checkout code from repo
+         uses: actions/checkout@v3
        - name: Check current directory and contents
          run: |
               pwd
