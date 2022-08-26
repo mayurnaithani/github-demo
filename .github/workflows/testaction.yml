@@ -26,7 +26,7 @@ jobs:
   IaC-change:
      runs-on: ubuntu-latest
      needs: Identify-the-change
-     if: contains( ${{ needs.Identify-the-change.outputs.all }}, 'CloudFormation' )
+     if: contains( needs.Identify-the-change.outputs.all, 'CloudFormation' )
      steps:     
        - name: Identify env
          if: github.ref == 'refs/heads/master'
