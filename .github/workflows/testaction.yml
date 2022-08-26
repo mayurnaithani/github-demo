@@ -4,17 +4,29 @@ on:
     branches:
       - master
 jobs:
-  IaC-change:
+  Checkout-code:
      runs-on: ubuntu-latest
      steps:
        - name: Checkout code from repo
          uses: actions/checkout@v3
-       - name: Check changed file
+  Identify-the-change:
+     runs-on: ubuntu-latest
+     outputs:
+       all: ${{ steps.files.outputs.all }}
+       added: ${{ steps.files.outputs.added }}
+       modified: ${{ steps.files.outputs.modified }}
+       removed: ${{ steps.files.outputs.removed }}
+       renamed: ${{ steps.files.outputs.renamed }}
+       added_modified: ${{ steps.files.outputs.added_modified }}
+       deleted: ${{ steps.files.outputs.deleted }}
+     steps:
+       - name: Check files changed
          id: files
          uses: jitterbit/get-changed-files@v1
-       - name: Check for changed files
-         if: contains( steps.files.outputs.all, 'CloudFormation' )
-         run: echo "Its an IaC change"
+  IaC-change:
+     runs-on: ubuntu-latest
+     if: contains( Identify-the-change.outputs.all, 'CloudFormation' )
+     steps:     
        - name: Identify env
          if: github.ref == 'refs/heads/master'
          run: echo "Current environment is test"
@@ -36,7 +48,7 @@ jobs:
            sqs-arn: ${{ secrets.SQS_ARN }}
            publish-message: "{Change-type: IaC,region:us-east-1,Changes: ${{ steps.files.outputs.all }}}"
            message-group-id: "us-east-1"
-       - name: Trigger Deployment job
+       - name: Trigger Deployment job 
          uses: ./.github/actions/jenkins-trigger
          with:
           jenkins_url: ${{ secrets.JENKINS_URL }}
