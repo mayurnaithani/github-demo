@@ -25,7 +25,7 @@ jobs:
          uses: jitterbit/get-changed-files@v1
   IaC-change:
      runs-on: ubuntu-latest
-     if: contains( Identify-the-change.outputs.all, 'CloudFormation' )
+     if: contains( jobs.Identify-the-change.outputs.all, 'CloudFormation' )
      steps:     
        - name: Identify env
          if: github.ref == 'refs/heads/master'
